@@ -19,19 +19,21 @@ with open(gcodeFile, "r") as f:
 
 regex_m900 = re.compile('^M900 K.*') # Matches a linear-advance command (the 'normal' setting to use except for infill)
 
-regex_typeInfill = re.compile('^;TYPE:(Internal infill)'); # Matches start of infill section
-regex_typeOther = re.compile('^;TYPE:(?!Internal infill)'); # Matches start of not-infill section
+regex_typeInfill = re.compile('^;TYPE:(Internal infill)') # Matches start of infill section
+regex_typeOther = re.compile('^;TYPE:(?!Internal infill)') # Matches start of not-infill section
+regex_typeExtrusion = re.compile('^G1.*E.*') # Matches extrusion (any extrusion value)
 
 outputLines = []
 matchedM900 = None
 
 kZero = False
+kZeroOutput = False
 
 # Go through lines and look for M900, save it and use for all non-infill sections
 for inputLine in inputLines:
   if bool(regex_typeInfill.match(inputLine)) and not kZero: # Start of infill 
-    outputLines.append("M900 K0\n")
     kZero = True
+    kZeroOutput = False
   elif bool(regex_m900.match(inputLine)): # M900 command already in gcode - use for 'non-infill'
     matchedM900 = inputLine
     kZero = False
@@ -41,6 +43,11 @@ for inputLine in inputLines:
     kZero = False
   
   outputLines.append(inputLine)
+  
+  # After first extrusion of infill, disable linear advance
+  if bool(regex_typeExtrusion.match(inputLine)) and kZero and not kZeroOutput:
+    outputLines.append("M900 K0\n")
+    kZeroOutput = True
 
 # Output modified g-code to file
 with open(gcodeFile, "w") as f:
