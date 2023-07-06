@@ -7,6 +7,8 @@ PrusaSlicer does not heat up the nozzle until just before it should start printi
 This post-processing script starts heating the nozzle to final printing temperature 1-2 minutes before that tool will start printing.
 Requires the 'Ooze prevention' feature to be enabled under 'Multiple Extruders' in print settings.
 
+The script also removes any unnecessary M109 and M104 commands (as in: the temperature has already been reached earlier in the g-code)
+
 ### Use
 
 Add a line in "Post-processing scripts" in "Print Settings":
