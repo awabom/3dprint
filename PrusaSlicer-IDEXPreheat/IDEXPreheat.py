@@ -25,9 +25,12 @@ with open(gcodeFile, "r") as f:
 
 regex_m109 = re.compile('^M109 .*(?P<tool>T[\d]+).*') # Matches a heat-and-wait command
 regex_m104 = re.compile('^M104 .*(?P<tool>T[\d]+).*') # Matches a cool-and-continue command
+regex_temp = re.compile('^(?P<cmd>M10[49]) .*(?P<temp>S[\d]+).*(?P<tool>T[\d]+).*') # Matches a heat-and-wait command
 regex_m73 = re.compile('^M73 .*(?P<remain>R[\d]+).*') # Matches a progress update command
 
 outputLines = []
+
+# Pass 1
 
 for lineNum in range(len(inputLines)):
   inputLine = inputLines[lineNum]
@@ -81,6 +84,32 @@ for lineNum in range(len(inputLines)):
           
             outputLines.insert(checkLineNum, preheat)
             break
+
+
+# Pass 2 - Remove any unnecessary temp commands - especially M109 since it can cause a wait even if up to temp
+currentToolTemp = {}
+currentToolTempGuaranteed = {}
+
+for lineNum in range(len(outputLines)):
+  outputLine = outputLines[lineNum]
+  
+  matchTemp = regex_temp.match(outputLine)
+  if bool(matchTemp):
+    cmd = matchTemp.group('cmd')
+    temp = matchTemp.group('temp')
+    tool = matchTemp.group('tool')
+    
+    if tool in currentToolTemp and currentToolTemp[tool] == temp:
+      if cmd == 'M104':
+        outputLines[lineNum] = '; already requested/stabilized temp: ' + outputLine
+      elif cmd == 'M109':
+        if currentToolTempGuaranteed[tool]:
+          outputLines[lineNum] = '; already stabilized temp: ' + outputLine
+        else:
+          currentToolTempGuaranteed[tool] = True
+    else:
+      currentToolTemp[tool] = temp
+      currentToolTempGuaranteed[tool] = cmd == 'M109'
 
 # Output modified g-code to file
 with open(gcodeFile, "w") as f:
