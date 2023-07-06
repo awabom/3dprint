@@ -9,5 +9,5 @@ This post-processing script turns off heating for any nozzle that is not used an
 Add a line in "Post-processing scripts" in "Print Settings":
 
 ```
-"C:\Program Files\Python311\python.exe" "C:\github\3dprint\IDEXEarlyShutoff.py";
+"C:\Program Files\Python311\python.exe" "C:\github\3dprint\PrusaSlicer-IDEXEarlyShutoff\IDEXEarlyShutoff.py";
 ```

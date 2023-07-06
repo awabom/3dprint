@@ -7,5 +7,5 @@ This post-processing script disables linear advance when printing 'Internal infi
 Add a line in "Post-processing scripts" in "Print Settings":
 
 ```
-"C:\Program Files\Python311\python.exe" "C:\github\3dprint\InfillNoLA.py";
+"C:\Program Files\Python311\python.exe" "C:\github\3dprint\PrusaSlicer-InfillNoLA\InfillNoLA.py";
 ```

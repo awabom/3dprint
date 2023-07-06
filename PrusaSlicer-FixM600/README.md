@@ -13,11 +13,11 @@ Tested using an Ender-3 V2 with "Professional Firmware" (mriscoc).
 Add a line in "Post-processing scripts" in "Print Settings":
 
 ```
-"C:\Program Files\Python311\python.exe" "C:\github\3dprint\FixM600.py";
+"C:\Program Files\Python311\python.exe" "C:\github\3dprint\PrusaSlicer-FixM600\FixM600.py";
 ```
 
 In addition to moving the M600 command, you can also prime the nozzle with an extra extrusion:
 
 ```
-"C:\Program Files\Python311\python.exe" "C:\github\3dprint\FixM600.py" "G1 E6 F2400";
+"C:\Program Files\Python311\python.exe" "C:\github\3dprint\PrusaSlicer-FixM600\FixM600.py" "G1 E6 F2400";
 ```

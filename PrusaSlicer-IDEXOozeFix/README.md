@@ -7,5 +7,5 @@ Experimental code!
 Add a line in "Post-processing scripts" in "Print Settings":
 
 ```
-"C:\Program Files\Python311\python.exe" "C:\github\3dprint\IDEXOozeFix.py";
+"C:\Program Files\Python311\python.exe" "C:\github\3dprint\PrusaSlicer-IDEXOozeFix\IDEXOozeFix.py";
 ```

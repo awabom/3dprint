@@ -12,5 +12,5 @@ Requires the 'Ooze prevention' feature to be enabled under 'Multiple Extruders' 
 Add a line in "Post-processing scripts" in "Print Settings":
 
 ```
-"C:\Program Files\Python311\python.exe" "C:\github\3dprint\IDEXPreheat.py";
+"C:\Program Files\Python311\python.exe" "C:\github\3dprint\PrusaSlicer-IDEXPreheat\IDEXPreheat.py";
 ```
