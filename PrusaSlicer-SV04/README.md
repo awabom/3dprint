@@ -1,6 +1,6 @@
 ## Presets for SV04 in PrusaSlicer
 
-NOTE: These presets probably requires John Carlson's SV04 firmware (I used these on v2.1.3.1b3 initially)
+NOTE: I've tested these presets on both johncarlson21's SV04 firmware (I used these on v2.1.3.1b3 initially) and on Bjoern70's firmware.
 
 These presets are a work in progress.
 
