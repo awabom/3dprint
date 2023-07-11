@@ -21,4 +21,22 @@ The presets (all version) also slow down the tool change retraction to 20 mm/s. 
 
 ### Installation
 
-On Windows, the "PrusaSlicer" folder is at "%APPDATA%\PrusaSlicer".
+To use these profiles with all the scripts, follow these steps:
+
+1. Install Python 3.11.x
+
+https://www.python.org/ftp/python/3.11.4/python-3.11.4-amd64.exe
+
+(found on https://www.python.org/downloads/)
+
+2. Download this whole repository from:
+
+https://github.com/awabom/3dprint/archive/refs/heads/main.zip
+
+3. Unzip the file, placing all the 'PrusaSlicer-'... folder into "C:\github\3dprint", so e.g. the "C:\github\3dprint\PrusaSlicer-IDEXOozeFix"
+should now contain a 'IDEXOozeFix.py' file.
+
+4. Copy all PS presets from "C:\github\3dprint\PrusaSlicer-SV04\PrusaSlicer" to "%APPDATA%\PrusaSlicer" (just copy/paste this folder path into file explorer address bar and it will change to the actual folder).
+
+5. Done! Start PrusaSlicer and select the SV04 presets and print... hopefully :)
+
