@@ -23,7 +23,7 @@ The presets (all version) also slow down the tool change retraction to 20 mm/s. 
 
 To use these profiles with all the scripts, follow these steps:
 
-1. Install Python 3.11.x
+1. Install Python 3.11.x - Make sure you install for "All Users", not just for the current account
 
 https://www.python.org/ftp/python/3.11.4/python-3.11.4-amd64.exe
 
