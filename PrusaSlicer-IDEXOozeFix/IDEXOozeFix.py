@@ -32,8 +32,8 @@ with open(gcodeFile, "r") as f:
 # ; printing object shape id:0 copy 0
 # G1 E-1.5
 # G1 X158.109 Y134.448 F7200
-# G1 E1.5 F2400
 # G1 E5 F2400 ; OozeFix
+# G1 E1.5 F2400
 # ;TYPE:External perimeter
 
 
@@ -67,7 +67,7 @@ for lineNum in range(len(inputLines)):
   elif undoOnExtrude:
     extrudeMatch = regex_extrude.match(inputLine)
     if bool(extrudeMatch):
-      outputLines.append(undoCommand + '\n')
+      outputLines.insert(len(outputLines)-1, undoCommand + '\n')
       undoDone = True
   else: # Check for heat-and-wait command
     m109Match = regex_m109.match(inputLine)
