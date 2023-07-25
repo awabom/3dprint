@@ -41,6 +41,9 @@ regex_undo = re.compile('.*CUSTOM RETRACT - UNDO (?P<tool>T[\d]+): (?P<undo>.*)'
 regex_extraprime = re.compile('.*EXTRAPRIME: (?P<prime>.*)') # Matches an 'extraprime' command to apply before first extrude
 regex_extrude = re.compile('^G1.*E[^\-].*') # Matches a G1 command that extrudes
 regex_m109 = re.compile('^M109 .*(?P<tool>T[\d]+).*') # Matches a heat-and-wait command
+regex_toolzhop = re.compile('.*;TOOL_Z_HOP') # Matches a tool change z-hop
+regex_toolunhop = re.compile('^;TOOL_Z_UNHOP.*') # Matches a 'enable unhop' trigger
+regex_movez = re.compile('^(?P<zmove>G1 Z.*)') # Matches a move that changes z (PrusaSlicer only does these separately, currently...)
 
 # 1st pass - Handle the first 'oozefix' retraction
 
@@ -95,6 +98,45 @@ for lineNum in range(len(inputLines)):
       extraPrime = None
       
   outputLines.append(inputLine)
+
+# 3rd pass - z-hop on tool change (currently does not z-hop that much if on layer change)
+inputLines = outputLines
+outputLines = []
+currentZmove = None
+duringZhop = False
+doUnhop = False
+
+for lineNum in range(len(inputLines)):
+  inputLine = inputLines[lineNum]
+  
+  # Check for tool change z-hop so we can ignore it (it should not affect our 'z unhop'
+  matchToolZhop = regex_toolzhop.match(inputLine)
+  if bool(matchToolZhop):
+    duringZhop = True
+    doUnhop = False
+  else:
+    # Search for z moves so we know the z coordinate
+    matchMoveZ = regex_movez.match(inputLine)
+    if bool(matchMoveZ):
+      currentZmove = matchMoveZ.group('zmove')
+      # Disable the z-move if we're going to unhop later
+      if doUnhop:
+        inputLine = '; disabled in z-hop: ' + inputLine
+    elif duringZhop:
+      if not doUnhop: # unhop is not yet enabled (still in tool change)
+        doUnhopMatch = regex_toolunhop.match(inputLine)
+        doUnhop = bool(doUnhopMatch)
+      else: # unhop enabled - check for first extrude command
+        extrudeMatch = regex_extrude.match(inputLine)
+        if bool(extrudeMatch):
+          outputLines.append(currentZmove + ' ; un-z-hop\n')
+          currentZmove = None
+          duringZhop = False
+          doUnhop = False
+        
+  outputLines.append(inputLine)
+
+
 
 # Output modified g-code to file
 with open(gcodeFile, "w") as f:
