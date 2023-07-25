@@ -41,7 +41,7 @@ regex_undo = re.compile('.*CUSTOM RETRACT - UNDO (?P<tool>T[\d]+): (?P<undo>.*)'
 regex_extraprime = re.compile('.*EXTRAPRIME: (?P<prime>.*)') # Matches an 'extraprime' command to apply before first extrude
 regex_extrude = re.compile('^G1.*E[^\-].*') # Matches a G1 command that extrudes
 regex_m109 = re.compile('^M109 .*(?P<tool>T[\d]+).*') # Matches a heat-and-wait command
-regex_toolzhop = re.compile('.*;TOOL_Z_HOP') # Matches a tool change z-hop
+regex_toolzhop = re.compile('^;TOOL_Z_HOP: (?P<hop>.*)') # Matches a tool change z-hop
 regex_toolunhop = re.compile('^;TOOL_Z_UNHOP.*') # Matches a 'enable unhop' trigger
 regex_movez = re.compile('^(?P<zmove>G1 Z.*)') # Matches a move that changes z (PrusaSlicer only does these separately, currently...)
 
@@ -112,6 +112,7 @@ for lineNum in range(len(inputLines)):
   # Check for tool change z-hop so we can ignore it (it should not affect our 'z unhop'
   matchToolZhop = regex_toolzhop.match(inputLine)
   if bool(matchToolZhop):
+    inputLine = matchToolZhop.group('hop') + '\n'
     duringZhop = True
     doUnhop = False
   else:
