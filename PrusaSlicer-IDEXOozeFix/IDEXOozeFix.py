@@ -40,7 +40,7 @@ with open(gcodeFile, "r") as f:
 regex_undo = re.compile('.*CUSTOM RETRACT - UNDO (?P<tool>T[\d]+): (?P<undo>.*)') # Matches a retract that should be unretracted for a specific tool
 regex_extraprime = re.compile('.*EXTRAPRIME: (?P<prime>.*)') # Matches an 'extraprime' command to apply before first extrude
 regex_extrude = re.compile('^G1.*E[^\-].*') # Matches a G1 command that extrudes
-regex_m109 = re.compile('^M109 .*(?P<tool>T[\d]+).*') # Matches a heat-and-wait command
+regex_toolchange = re.compile('^(?P<tool>T[\d]+).*') # Matches a tool change command
 regex_toolzhop = re.compile('^;TOOL_Z_HOP: (?P<hop>.*)') # Matches a tool change z-hop
 regex_toolunhop = re.compile('^;TOOL_Z_UNHOP.*') # Matches a 'enable unhop' trigger
 regex_movez = re.compile('^(?P<zmove>G1 Z.*)') # Matches a move that changes z (PrusaSlicer only does these separately, currently...)
@@ -72,10 +72,10 @@ for lineNum in range(len(inputLines)):
     if bool(extrudeMatch):
       outputLines.insert(len(outputLines)-1, undoCommand + '\n')
       undoDone = True
-  else: # Check for heat-and-wait command
-    m109Match = regex_m109.match(inputLine)
-    if bool(m109Match):
-      heatTool = m109Match.group('tool')
+  else: # Check for tool change command
+    toolMatch = regex_toolchange.match(inputLine)
+    if bool(toolMatch):
+      heatTool = toolMatch.group('tool')
       if heatTool == undoTool:
         undoOnExtrude = True
 
