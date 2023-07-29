@@ -131,7 +131,6 @@ for lineNum in range(len(inputLines)):
         extrudeMatch = regex_extrude.match(inputLine)
         if bool(extrudeMatch):
           outputLines.append(currentZmove + ' ; un-z-hop\n')
-          currentZmove = None
           duringZhop = False
           doUnhop = False
         
