@@ -9,6 +9,7 @@ import re
 import os
 import io
 import subprocess
+from decimal import Decimal
 
 # Path to g-code file from command-line
 gcodeFile = sys.argv[len(sys.argv)-1]
@@ -42,8 +43,8 @@ regex_extraprime = re.compile('.*EXTRAPRIME: (?P<prime>.*)') # Matches an 'extra
 regex_extrude = re.compile('^G1.*E[^\-].*') # Matches a G1 command that extrudes
 regex_toolchange = re.compile('^(?P<tool>T[\d]+).*') # Matches a tool change command
 regex_toolzhop = re.compile('^;TOOL_Z_HOP: (?P<hop>.*)') # Matches a tool change z-hop
-regex_toolunhop = re.compile('^;TOOL_Z_UNHOP.*') # Matches a 'enable unhop' trigger
-regex_movez = re.compile('^(?P<zmove>G1 Z.*)') # Matches a move that changes z (PrusaSlicer only does these separately, currently...)
+regex_toolunhop = re.compile('^;TOOL_Z_UNHOP:(?P<extra>[^;\ ]+).*') # Matches a 'enable unhop' trigger, including an 'extra unhop' distance for z banding fix
+regex_movez = re.compile('^(?P<zmove>G1 Z(?P<zheight>[^;\ ]+).*)') # Matches a move that changes z (PrusaSlicer only does these separately, currently...)
 
 # 1st pass - Handle the first 'oozefix' retraction
 
@@ -103,6 +104,8 @@ for lineNum in range(len(inputLines)):
 inputLines = outputLines
 outputLines = []
 currentZmove = None
+currentZheight = None
+unhopExtra = 0
 duringZhop = False
 doUnhop = False
 
@@ -120,6 +123,7 @@ for lineNum in range(len(inputLines)):
     matchMoveZ = regex_movez.match(inputLine)
     if bool(matchMoveZ):
       currentZmove = matchMoveZ.group('zmove')
+      currentZheight = matchMoveZ.group('zheight')
       # Disable the z-move if we're going to unhop later
       if doUnhop:
         inputLine = '; disabled in z-hop: ' + inputLine
@@ -127,10 +131,14 @@ for lineNum in range(len(inputLines)):
       if not doUnhop: # unhop is not yet enabled (still in tool change)
         doUnhopMatch = regex_toolunhop.match(inputLine)
         doUnhop = bool(doUnhopMatch)
+        if doUnhop:
+          unhopExtra = Decimal(doUnhopMatch.group('extra'))
       else: # unhop enabled - check for first extrude command
         extrudeMatch = regex_extrude.match(inputLine)
         if bool(extrudeMatch):
-          outputLines.append(currentZmove + ' ; un-z-hop\n')
+          unhopMove = currentZmove.replace(currentZheight, str(Decimal(currentZheight)-unhopExtra))
+          outputLines.append(unhopMove + ' ; un-z-hop to target height minus extra unhop\n')
+          
           duringZhop = False
           doUnhop = False
         
