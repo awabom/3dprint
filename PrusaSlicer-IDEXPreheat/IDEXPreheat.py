@@ -25,6 +25,7 @@ with open(gcodeFile, "r") as f:
 
 regex_m109 = re.compile('^M109 .*(?P<tool>T[\d]+).*') # Matches a heat-and-wait command
 regex_m104 = re.compile('^M104 .*(?P<tool>T[\d]+).*') # Matches a cool-and-continue command
+regex_m104temp = re.compile('.*S(?P<temp>[^ ;]+).*') # Matches the temperature part of an m104 command
 regex_temp = re.compile('^(?P<cmd>M10[49]) .*(?P<temp>S[\d]+).*(?P<tool>T[\d]+).*') # Matches a heat-and-wait command
 regex_m73 = re.compile('^M73 .*(?P<remain>R[\d]+).*') # Matches a progress update command
 
@@ -79,7 +80,10 @@ for lineNum in range(len(inputLines)):
               outputLines.insert(lineNumShortPreHeat, preheat + 'short\n')
             else: # Long unused extruder, long pre-heat and deep-freeze cooldown
               outputLines.insert(lineNumLongPreHeat, preheat + 'long\n')
-              outputLines[checkLineNum] = 'M104 S130 ' + tool + ' ; Converted cool-down to deep-freeze: ' + checkLine
+              matchTemp = regex_m104temp.match(checkLine)
+              # If it's a cooldown to higher than 130, replace it with more cooling (otherwise, leave it alone)
+              if bool(matchTemp) and float(matchTemp.group('temp')) > 130:
+                outputLines[checkLineNum] = 'M104 S130 ' + tool + ' ; Converted cool-down to deep-freeze: ' + checkLine
         break
       
       # Check for a 'remaining' command to determine where pre-heat should happen
