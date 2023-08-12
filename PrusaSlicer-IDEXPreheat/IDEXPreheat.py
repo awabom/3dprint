@@ -33,8 +33,8 @@ outputLines = []
 
 # Pass 1
 
-PreHeatShortCount = 2
-PreHeatLongCount = 5
+PreHeatShortCount = 1
+PreHeatLongCount = 2
 
 for lineNum in range(len(inputLines)):
   inputLine = inputLines[lineNum]
