@@ -6,9 +6,10 @@ These presets are a work in progress.
 
 There is no need to select mode with the printer display - the gcode will set the printer into the correct mode automatically, based on the selected 'Printer' in PrusaSlicer.
 
-For the "Copy Mode" and "Mirror Mode" presets, the two extruders are for setting different filament temperatures in PrusaSlicer. Do not attempt to define extruder for different objects on the plate! (I don't know what happens)
+For normal single-color printing and dual-color printing: Use 'Dual' mode. I personally currently use the 'Beta' profile the most.
+By using only one extruder on the plate, the other extruder will be inactive during the print (So no Single 1/2 profiles are needed).
 
-The "Single Mode" and "Single Mode 2" printers differ only with a T0/T1 command to make the printer use the correct extruder.
+For the "Copy Mode" and "Mirror Mode" presets, the two extruders are for setting different filament temperatures in PrusaSlicer. Do not attempt to define extruder for different objects on the plate! (I don't know what happens)
 
 The print settings-presets are available in two versions: "With Scripts" and 'without'. 
 The "With Scripts" versions use my extra post-processing scripts to improve things that PrusaSlicer does not currently handle well:
@@ -39,4 +40,3 @@ should now contain a 'IDEXOozeFix.py' file.
 4. Copy all PS presets from "C:\github\3dprint\PrusaSlicer-SV04\PrusaSlicer" to "%APPDATA%\PrusaSlicer" (just copy/paste this folder path into file explorer address bar and it will change to the actual folder).
 
 5. Done! Start PrusaSlicer and select the SV04 presets and print... hopefully :)
-
