@@ -6,7 +6,7 @@ These presets are a work in progress.
 
 There is no need to select mode with the printer display - the gcode will set the printer into the correct mode automatically, based on the selected 'Printer' in PrusaSlicer.
 
-For normal single-color printing and dual-color printing: Use 'Dual' mode. I personally currently use the 'Beta' profile the most.
+For normal single-color printing and dual-color printing: Use 'Dual and Single' printer preset. I personally currently use the 'Beta' profile the most.
 By using only one extruder on the plate, the other extruder will be inactive during the print (So no Single 1/2 profiles are needed).
 
 For the "Copy Mode" and "Mirror Mode" presets, the two extruders are for setting different filament temperatures in PrusaSlicer. Do not attempt to define extruder for different objects on the plate! (I don't know what happens)
