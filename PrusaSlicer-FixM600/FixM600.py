@@ -24,6 +24,7 @@ with open(gcodeFile, "r") as f:
   
 regex_m600 = re.compile('^M600($| .*)') # Just an M600 command
 regex_extrusion = re.compile('^G1( .*)? E[^-].*') # G1 with non-negative E-value
+regex_extrusion_only = re.compile('^G1 +E[^-].*') # G1 with non-negative E-value without XYZ movement
 
 outputLines = []
 matchedM600 = None
@@ -36,13 +37,21 @@ for inputLine in inputLines:
     else: # Not an M600 - just output
       outputLines.append(inputLine)
   else: # Have seen M600 - check for first positive extrusion - output M600 before it
-    if bool(regex_extrusion.match(inputLine)): 
+    if bool(regex_extrusion_only.match(inputLine)):
+      outputLines.append(inputLine)
       outputLines.append(matchedM600)
       matchedM600 = None
       if afterM600:
         outputLines.append(afterM600)
         outputLines.append("\n")
-    outputLines.append(inputLine)
+    else: 
+      if bool(regex_extrusion.match(inputLine)): 
+        outputLines.append(matchedM600)
+        matchedM600 = None
+        if afterM600:
+          outputLines.append(afterM600)
+          outputLines.append("\n")
+      outputLines.append(inputLine)
 
 # Output modified g-code to file
 with open(gcodeFile, "w") as f:
