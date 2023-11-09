@@ -55,7 +55,7 @@ namespace CNC
                 if (moveZ.Success)
                 {
                     latestZCommand = line;
-                    latestZ = decimal.Parse(moveZ.Groups["z"].Value, IC);
+                    latestZ = GCodeDecimalParse(moveZ.Groups["z"].Value);
                     currentZ = latestZ.Value;
                 }
                 else // not a z-move, check for travel/extrude
@@ -100,7 +100,7 @@ namespace CNC
             for (int i=0; i < result.Count; i++)
             {
                 var zMatch = reMoveZ.Match(result[i]);
-                if (zMatch.Success && decimal.Parse(zMatch.Groups["z"].Value) < 0)
+                if (zMatch.Success && GCodeDecimalParse(zMatch.Groups["z"].Value) < 0)
                 {
                     result[i] = "; CNC REMOVED FIRST CUTTING Z-MOVE: " + result[i];
                     break;
@@ -108,6 +108,11 @@ namespace CNC
             }
 
             return result;
+        }
+
+        private static decimal GCodeDecimalParse(string value)
+        {
+            return decimal.Parse(value, NumberStyles.Any, IC);
         }
     }
 
