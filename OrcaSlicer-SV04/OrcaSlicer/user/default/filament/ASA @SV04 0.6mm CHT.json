@@ -1,0 +1,64 @@
+{
+    "close_fan_the_first_x_layers": [
+        "1"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "fan_cooling_layer_time": [
+        "30"
+    ],
+    "fan_max_speed": [
+        "5"
+    ],
+    "fan_min_speed": [
+        "2"
+    ],
+    "filament_end_gcode": [
+        "; Filament end gcode \n; Filament end gcode END"
+    ],
+    "filament_flow_ratio": [
+        "1"
+    ],
+    "filament_max_volumetric_speed": [
+        "16"
+    ],
+    "filament_minimal_purge_on_wipe_tower": [
+        "5"
+    ],
+    "filament_settings_id": [
+        "ASA @SV04 0.6mm CHT"
+    ],
+    "filament_start_gcode": [
+        "; Filament gcode\n; Filament gcode END\n"
+    ],
+    "filament_vendor": [
+        "MY"
+    ],
+    "from": "User",
+    "inherits": "My Generic ASA",
+    "is_custom_defined": "0",
+    "name": "ASA @SV04 0.6mm CHT",
+    "nozzle_temperature": [
+        "265"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "265"
+    ],
+    "overhang_fan_speed": [
+        "20"
+    ],
+    "overhang_fan_threshold": [
+        "75%"
+    ],
+    "pressure_advance": [
+        "0.04"
+    ],
+    "reduce_fan_stop_start_freq": [
+        "0"
+    ],
+    "slow_down_layer_time": [
+        "5"
+    ],
+    "version": "1.6.1.0"
+}
