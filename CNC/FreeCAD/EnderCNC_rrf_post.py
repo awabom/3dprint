@@ -6,7 +6,7 @@
 # *   Copyright (c) 2020 Gary L Hasson                                        *
 # *   Copyright (c) 2023 Åke Wallebom                                         *
 # *                                                                           *
-# *   This file is part of the FreeCAD CAx development system.                *
+# *   This file is based on the rrf_post.py file from FreeCAD.                *
 # *                                                                           *
 # *   This program is free software; you can redistribute it and/or modify    *
 # *   it under the terms of the GNU Lesser General Public License (LGPL)      *
