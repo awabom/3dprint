@@ -35,6 +35,7 @@
     ],
     "prime_tower_width": "10",
     "print_settings_id": "Vase Thick 0.4mm @SV04 0.6mm",
+    "seam_gap": "0",
     "skirt_distance": "5",
     "skirt_loops": "2",
     "small_perimeter_threshold": "10",

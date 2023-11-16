@@ -1,0 +1,75 @@
+{
+    "change_filament_gcode": "; Change filament gcode begin\n{if previous_extruder != next_extruder}\n\n{if enable_prime_tower}\nG0 F9000 X{wipe_tower_x[0]} Y{wipe_tower_y[0]}  ; Fast move to wipe tower\n{endif}\n\nM104 S{nozzle_temperature[(previous_extruder < 0 ? 0 : previous_extruder)]-30} T{previous_extruder} ;cooldown\nT[next_extruder] ; Make the previous extruder park before heating next extruder\n{endif}\nM109 S{nozzle_temperature[next_extruder]} T[next_extruder]\n{if initial_extruder == next_extruder and layer_z == 0}\nG1 E5 F2400 ; extra extrude on first use of initial_extruder\n{endif}\n; Change filament gcode end",
+    "cooling_tube_length": "0",
+    "cooling_tube_retraction": "0",
+    "deretraction_speed": [
+        "0"
+    ],
+    "enable_filament_ramming": "0",
+    "extra_loading_move": "0",
+    "fan_speedup_overhangs": "0",
+    "fan_speedup_time": "0.5",
+    "from": "User",
+    "gcode_flavor": "marlin2",
+    "inherits": "MyMarlin 0.4 nozzle",
+    "is_custom_defined": "0",
+    "machine_end_gcode": "G1 Z{z_offset+min(max_layer_z+10, printable_height)} F600 ; Move head up\n\nG28 X ; home extruder on x-axis\n\nM140 S0 ; turn off heatbed\nM104 S0 ; turn off hotends\nM107 ; turn off fan\nM84 X Y E ; disable motors",
+    "machine_max_acceleration_extruding": [
+        "500"
+    ],
+    "machine_max_acceleration_retracting": [
+        "800"
+    ],
+    "machine_max_acceleration_travel": [
+        "1000",
+        "1250"
+    ],
+    "machine_max_acceleration_x": [
+        "800"
+    ],
+    "machine_max_acceleration_y": [
+        "500"
+    ],
+    "machine_pause_gcode": "; Pause gcode\nM601",
+    "machine_start_gcode": "M605 S2 X150 R{nozzle_temperature_initial_layer[1]-nozzle_temperature_initial_layer[0]} ; Initialize copy mode with X-offset and temp diff between extruders\nM605 S2 ; Copy Mode Start\n\nG90 ; use absolute coordinates\nM83 ; extruder relative mode\nM413 S0 ; disable power-loss recovery\n\nM140 S{bed_temperature_initial_layer[0]} ; start heating bed\nM104 S{nozzle_temperature_initial_layer[0]-50} ; Start heating nozzles\n\nG28 X ; home x to buckets\n\nM190 S{bed_temperature_initial_layer[0]} ; wait for bed temp to stabilize\n\nM280 P0 S160 ; Reset BL/CR Touch\nG34 ; z stepper auto-align\nG28 ; home all axis\nG28 X ; home extruder on x-axis (to the buckets)\nM109 S{nozzle_temperature_initial_layer[0]} ; Heat and wait for nozzle temps to stabilize\nM420 S1 ; enable bed leveling\n\nG1 Z2.0 F3000 ; Move Z Axis down near bed\n\nG92 E0 ; Reset Extruder\nG1 X0.5 Y20 Z0.3 F5000.0 ; Move to start position\nG1 X0.5 Y200.0 Z0.3 F1500.0 E14 ; Draw the first line\nG1 X1 Y200.0 Z0.3 F5000.0 ; Move to side a little\nG1 X1 Y20 Z0.3 F1500.0 E14 ; Draw the second line\n\nG1 Z2.0 F3000 ; Move Z Axis up little to prevent scratching of Heat Bed\nG28 X ; home to bucket - wipe\n",
+    "max_layer_height": [
+        "0.48"
+    ],
+    "name": "SV04 Copy Mode CHT 0.6mm",
+    "nozzle_diameter": [
+        "0.6"
+    ],
+    "parking_pos_retraction": "0",
+    "printable_area": [
+        "0x0",
+        "150x0",
+        "150x300",
+        "0x300"
+    ],
+    "printable_height": "400",
+    "printer_settings_id": "SV04 Copy Mode CHT 0.6mm",
+    "purge_in_prime_tower": "0",
+    "retract_length_toolchange": [
+        "5"
+    ],
+    "retract_restart_extra_toolchange": [
+        "0.05"
+    ],
+    "retraction_length": [
+        "1"
+    ],
+    "retraction_minimum_travel": [
+        "2"
+    ],
+    "retraction_speed": [
+        "40"
+    ],
+    "thumbnails": [],
+    "version": "1.6.1.0",
+    "wipe": [
+        "1"
+    ],
+    "z_hop": [
+        "0"
+    ]
+}
