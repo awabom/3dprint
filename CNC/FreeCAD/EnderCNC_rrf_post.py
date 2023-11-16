@@ -81,7 +81,7 @@ PRE_OPERATION = """"""  # Pre operation text will be inserted before
 POST_OPERATION = """"""  # Post operation text will be inserted after
 # every operation
 TOOL_CHANGE = """
-M600; """  # Tool Change commands will be inserted
+G0 Z100 F600"""  # Tool Change commands will be inserted
 # before a tool change
 
 # *****************************************************************************
@@ -202,6 +202,8 @@ TOOLTIP_ARGS = parser.format_help()
 # Default preamble text will appear at the beginning of the gcode output file.
 PREAMBLE = """
 M84 X Y Z E ; disable all motors to forget any homing
+M117 Move to Origin
+M0 Move to Origin
 M17 X Y Z ; enable all motors except extruder
 
 G90 ; absolute positioning
@@ -210,17 +212,13 @@ M413 S0 ; disable power-loss recovery
 M106 S255 ; turn on motherboard fan (part cooling, really)
 
 G92 Z0 X0 Y0 ; set current position to x=y=z=0
-G1 F600 Z20; go up 20 mm and...
-M117 Turn on spindle power
-M0 ; ...pause to turn on tool power manually
-M117 Running
 """
 
 # Default postamble text will appear following the last operation.
 POSTAMBLE = """
-M84 X Y E ; disable motors except Z
+G1 F600 Z100 ; go up a long bit
 M106 S0 ; turn off motherboard fan
-M117 Done
+M0 Done, turn off spindle
 """
 
 # *****************************************************************************
@@ -639,7 +637,7 @@ def parse(pathobj):
                     for line in TOOL_CHANGE.splitlines(True):
                         out += linenumber() + line + "\n"
                     outlist[0] = " "
-                    #outlist[-1] = "; T" + str(int(c.Parameters["T"]))
+                    outlist[-1] = "M0 Tool " + str(int(c.Parameters["T"]))
 
                 if not OUTPUT_TOOL_CHANGE and OUTPUT_COMMENTS:
                     # next 2 lines could also be replaced by a single line as "outlist = []"
