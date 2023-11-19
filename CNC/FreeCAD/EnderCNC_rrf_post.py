@@ -482,6 +482,8 @@ def export(objectslist, filename, argstring):
     # Write the file:
     with open(filename, "w") as fp:
         fp.write(final)
+        
+    return final
 
 
 def linenumber():
