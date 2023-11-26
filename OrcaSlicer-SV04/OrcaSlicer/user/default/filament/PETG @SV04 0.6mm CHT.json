@@ -35,12 +35,15 @@
     ],
     "inherits": "My Generic PETG",
     "is_custom_defined": "0",
-    "name": "PETG @ SV04 0.6mm CHT",
+    "name": "PETG @SV04 0.6mm CHT",
     "nozzle_temperature": [
         "245"
     ],
     "nozzle_temperature_initial_layer": [
         "245"
+    ],
+    "overhang_fan_speed": [
+        "75"
     ],
     "pressure_advance": [
         "0.05"

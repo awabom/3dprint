@@ -6,10 +6,10 @@
         "1"
     ],
     "fan_cooling_layer_time": [
-        "30"
+        "60"
     ],
     "fan_max_speed": [
-        "5"
+        "20"
     ],
     "fan_min_speed": [
         "2"
@@ -40,19 +40,19 @@
     "is_custom_defined": "0",
     "name": "ASA @SV04 0.6mm CHT",
     "nozzle_temperature": [
-        "265"
+        "255"
     ],
     "nozzle_temperature_initial_layer": [
-        "265"
+        "255"
     ],
     "overhang_fan_speed": [
-        "20"
+        "30"
     ],
     "overhang_fan_threshold": [
-        "75%"
+        "50%"
     ],
     "pressure_advance": [
-        "0.04"
+        "0.03"
     ],
     "reduce_fan_stop_start_freq": [
         "0"

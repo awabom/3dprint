@@ -54,6 +54,5 @@
     "top_surface_acceleration": "500",
     "top_surface_line_width": "100%",
     "top_surface_speed": "60",
-    "version": "1.6.1.0",
-    "xy_hole_compensation": "0.2"
+    "version": "1.6.1.0"
 }
