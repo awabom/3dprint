@@ -18,7 +18,7 @@
         "5"
     ],
     "filament_settings_id": [
-        "PLA 210 @SV04 0.6mm CHT"
+        "PLA PolyTerra @SV04 0.6mm CHT"
     ],
     "filament_vendor": [
         "MY"
@@ -29,18 +29,18 @@
     ],
     "inherits": "My Generic PLA",
     "is_custom_defined": "0",
-    "name": "PLA 210 @SV04 0.6mm CHT",
+    "name": "PLA PolyTerra @SV04 0.6mm CHT",
     "nozzle_temperature": [
-        "210"
+        "225"
     ],
     "nozzle_temperature_initial_layer": [
-        "210"
+        "225"
     ],
     "overhang_fan_threshold": [
         "25%"
     ],
     "pressure_advance": [
-        "0.05"
+        "0.03"
     ],
     "slow_down_layer_time": [
         "20"

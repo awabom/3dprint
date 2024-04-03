@@ -18,7 +18,7 @@
         "; Filament end gcode \n; Filament end gcode END"
     ],
     "filament_flow_ratio": [
-        "1"
+        "0.97"
     ],
     "filament_max_volumetric_speed": [
         "16"
@@ -40,10 +40,10 @@
     "is_custom_defined": "0",
     "name": "ASA @SV04 0.6mm CHT",
     "nozzle_temperature": [
-        "255"
+        "250"
     ],
     "nozzle_temperature_initial_layer": [
-        "255"
+        "250"
     ],
     "overhang_fan_speed": [
         "30"
@@ -52,7 +52,7 @@
         "50%"
     ],
     "pressure_advance": [
-        "0.03"
+        "0.04"
     ],
     "reduce_fan_stop_start_freq": [
         "0"

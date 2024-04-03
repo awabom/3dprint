@@ -11,9 +11,6 @@
     "fan_min_speed": [
         "10"
     ],
-    "filament_flow_ratio": [
-        "1"
-    ],
     "filament_max_volumetric_speed": [
         "16"
     ],
@@ -21,7 +18,7 @@
         "5"
     ],
     "filament_settings_id": [
-        "PETG @ SV04 0.6mm CHT"
+        "PETG @SV04 0.6mm CHT"
     ],
     "filament_vendor": [
         "MY"

@@ -18,7 +18,7 @@
         "; Filament end gcode \n; Filament end gcode END\n"
     ],
     "filament_flow_ratio": [
-        "1"
+        "0.95"
     ],
     "filament_max_volumetric_speed": [
         "16"
