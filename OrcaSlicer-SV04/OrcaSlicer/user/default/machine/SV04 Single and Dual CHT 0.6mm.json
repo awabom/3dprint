@@ -15,13 +15,13 @@
     "is_custom_defined": "0",
     "machine_end_gcode": "G1 Z{z_offset+min(max_layer_z+10, printable_height)} F600 ; Move head up\n\nG28 X ; home extruder on x-axis\n\nM140 S0 ; turn off heatbed\nM104 S0 T0 ; turn off hotend\nM104 S0 T1 ; turn off hotend\nM107 ; turn off fan\nM84 X Y E ; disable motors",
     "machine_max_acceleration_extruding": [
-        "500"
+        "800"
     ],
     "machine_max_acceleration_retracting": [
         "800"
     ],
     "machine_max_acceleration_travel": [
-        "1000",
+        "1500",
         "1250"
     ],
     "machine_max_acceleration_x": [
