@@ -1,69 +1,69 @@
 {
-    "close_fan_the_first_x_layers": [
-        "1"
-    ],
     "enable_pressure_advance": [
         "1"
-    ],
-    "fan_cooling_layer_time": [
-        "25"
     ],
     "fan_max_speed": [
         "5"
     ],
     "fan_min_speed": [
-        "2"
+        "5"
     ],
-    "filament_end_gcode": [
-        "; Filament end gcode \n; Filament end gcode END\n"
+    "filament_deretraction_speed": [
+        "10"
     ],
     "filament_flow_ratio": [
-        "1"
+        "1.2"
+    ],
+    "filament_max_volumetric_speed": [
+        "10"
     ],
     "filament_minimal_purge_on_wipe_tower": [
         "5"
     ],
+    "filament_retraction_length": [
+        "nil"
+    ],
+    "filament_retraction_speed": [
+        "20"
+    ],
     "filament_settings_id": [
-        "ABS @SV04"
-    ],
-    "filament_start_gcode": [
-        "; Filament gcode\n; Filament gcode END\n"
-    ],
-    "filament_type": [
-        "ABS"
+        "TPU 235 Experiment @SV04 0.6mm"
     ],
     "filament_vendor": [
         "MY"
     ],
     "from": "User",
     "hot_plate_temp": [
-        "100"
+        "40"
     ],
     "hot_plate_temp_initial_layer": [
-        "100"
+        "40"
     ],
-    "inherits": "My Generic ASA",
+    "inherits": "My Generic TPU",
     "is_custom_defined": "0",
-    "name": "ABS @SV04",
-    "nozzle_temperature_range_high": [
-        "260"
+    "name": "TPU 235 Experiment @SV04 0.6mm",
+    "nozzle_temperature": [
+        "235"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "235"
     ],
     "nozzle_temperature_range_low": [
-        "220"
+        "210"
     ],
     "overhang_fan_speed": [
-        "20"
-    ],
-    "overhang_fan_threshold": [
-        "75%"
+        "75"
     ],
     "pressure_advance": [
-        "0.04"
+        "0.05"
     ],
     "reduce_fan_stop_start_freq": [
         "0"
     ],
     "slow_down_layer_time": [
+        "20"
+    ],
+    "slow_down_min_speed": [
         "5"
     ],
     "version": "1.6.1.0"

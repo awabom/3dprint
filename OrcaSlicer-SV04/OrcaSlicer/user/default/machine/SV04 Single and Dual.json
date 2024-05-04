@@ -13,7 +13,7 @@
     "gcode_flavor": "marlin2",
     "inherits": "MyMarlin 0.4 nozzle",
     "is_custom_defined": "0",
-    "machine_end_gcode": "G1 Z{z_offset+min(max_layer_z+10, printable_height)} F600 ; Move head up\n\nG28 X ; home extruder on x-axis\n\nM140 S0 ; turn off heatbed\nM104 S0 T0 ; turn off hotend\nM104 S0 T1 ; turn off hotend\nM107 ; turn off fan\nM84 X Y E ; disable motors",
+    "machine_end_gcode": "G1 E-2 F1200 ; Retract \nG1 Z{z_offset+min(max_layer_z+10, printable_height)} F600 ; Move head up\n\nG28 X ; home extruder on x-axis\n\nM140 S0 ; turn off heatbed\nM104 S0 T0 ; turn off hotend\nM104 S0 T1 ; turn off hotend\nM107 ; turn off fan\nM84 X Y E ; disable motors",
     "machine_max_acceleration_extruding": [
         "500"
     ],
