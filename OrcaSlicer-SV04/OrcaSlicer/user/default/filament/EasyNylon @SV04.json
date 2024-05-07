@@ -6,62 +6,65 @@
         "1"
     ],
     "fan_cooling_layer_time": [
-        "25"
+        "60"
     ],
     "fan_max_speed": [
-        "5"
+        "20"
     ],
     "fan_min_speed": [
         "2"
     ],
     "filament_end_gcode": [
-        "; Filament end gcode \n; Filament end gcode END\n"
+        "; Filament end gcode \n; Filament end gcode END"
     ],
     "filament_flow_ratio": [
-        "0.95"
+        "1"
     ],
     "filament_max_volumetric_speed": [
-        "16"
+        "10"
     ],
     "filament_minimal_purge_on_wipe_tower": [
         "5"
     ],
+    "filament_notes": [
+        "The temperature requires a modified firmware!"
+    ],
     "filament_settings_id": [
-        "ABS @SV04 0.6mm CHT"
+        "EasyNylon @SV04"
     ],
     "filament_start_gcode": [
         "; Filament gcode\n; Filament gcode END\n"
     ],
     "filament_type": [
-        "ABS"
+        "PA"
     ],
     "filament_vendor": [
         "MY"
     ],
     "from": "User",
     "hot_plate_temp": [
-        "100"
+        "40"
     ],
     "hot_plate_temp_initial_layer": [
-        "100"
+        "40"
     ],
     "inherits": "My Generic ASA",
     "is_custom_defined": "0",
-    "name": "ABS @SV04 0.6mm CHT",
-    "nozzle_temperature_range_high": [
-        "260"
+    "name": "EasyNylon @SV04",
+    "nozzle_temperature": [
+        "270"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "270"
     ],
     "nozzle_temperature_range_low": [
-        "220"
+        "250"
     ],
     "overhang_fan_speed": [
-        "20"
+        "30"
     ],
     "overhang_fan_threshold": [
-        "75%"
-    ],
-    "pressure_advance": [
-        "0.04"
+        "50%"
     ],
     "reduce_fan_stop_start_freq": [
         "0"

@@ -9,16 +9,13 @@
         "20"
     ],
     "filament_flow_ratio": [
-        "0.95"
-    ],
-    "filament_max_volumetric_speed": [
-        "16"
+        "1"
     ],
     "filament_minimal_purge_on_wipe_tower": [
         "5"
     ],
     "filament_settings_id": [
-        "PLA 210 @SV04 0.6mm CHT"
+        "PLA @SV04"
     ],
     "filament_vendor": [
         "MY"
@@ -29,7 +26,7 @@
     ],
     "inherits": "My Generic PLA",
     "is_custom_defined": "0",
-    "name": "PLA 210 @SV04 0.6mm CHT",
+    "name": "PLA @SV04",
     "nozzle_temperature": [
         "210"
     ],
