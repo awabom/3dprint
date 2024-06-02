@@ -67,6 +67,5 @@
     "top_surface_speed": "80",
     "travel_acceleration": "1500",
     "version": "1.6.1.0",
-    "wall_sequence": "inner-outer-inner wall",
-    "xy_hole_compensation": "0.2"
+    "wall_sequence": "inner-outer-inner wall"
 }

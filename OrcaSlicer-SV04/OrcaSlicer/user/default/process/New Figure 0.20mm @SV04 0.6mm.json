@@ -2,6 +2,7 @@
     "bridge_no_support": "1",
     "bridge_speed": "40",
     "default_acceleration": "800",
+    "elefant_foot_compensation": "0.1",
     "enable_prime_tower": "1",
     "enable_support": "1",
     "filename_format": "{input_filename_base}_{print_time}.gcode",
