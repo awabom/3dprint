@@ -43,49 +43,49 @@ Note: At the end of the start g-code, there is a section of if-statements. This 
 I guess the values will differ for you.
 
 
-G28
-G90
-G1 X0 F9000
-G1 Y20
-G1 Z0.600 F600
-G1 Y0 F9000
-START_PRINT
-G90
-G1 X0 F9000
-G1 Y20
-G1 Z0.600 F600
-G1 Y0 F9000
-M400
-G91
-M83
-M140 S[bed_temperature_initial_layer_single] ;set bed temp
-M190 S[bed_temperature_initial_layer_single] ;wait for bed temp
-M104 S[nozzle_temperature_initial_layer] ;set extruder temp
-M109 S[nozzle_temperature_initial_layer];wait for extruder temp
+	G28
+	G90
+	G1 X0 F9000
+	G1 Y20
+	G1 Z0.600 F600
+	G1 Y0 F9000
+	START_PRINT
+	G90
+	G1 X0 F9000
+	G1 Y20
+	G1 Z0.600 F600
+	G1 Y0 F9000
+	M400
+	G91
+	M83
+	M140 S[bed_temperature_initial_layer_single] ;set bed temp
+	M190 S[bed_temperature_initial_layer_single] ;wait for bed temp
+	M104 S[nozzle_temperature_initial_layer] ;set extruder temp
+	M109 S[nozzle_temperature_initial_layer];wait for extruder temp
 
-{if filament_type[initial_extruder] == "PETG"}
-SET_GCODE_OFFSET Z_ADJUST=0.15
-{elsif filament_type[initial_extruder] == "ASA"}
-SET_GCODE_OFFSET Z_ADJUST=0.10
-{elsif filament_type[initial_extruder] == "ABS"}
-SET_GCODE_OFFSET Z_ADJUST=0.10
-{elsif filament_type[initial_extruder] == "PLA"}
-SET_GCODE_OFFSET Z_ADJUST=0.10
-{else}
-SET_GCODE_OFFSET Z_ADJUST=0.15
-{endif}
+	{if filament_type[initial_extruder] == "PETG"}
+	SET_GCODE_OFFSET Z_ADJUST=0.15
+	{elsif filament_type[initial_extruder] == "ASA"}
+	SET_GCODE_OFFSET Z_ADJUST=0.10
+	{elsif filament_type[initial_extruder] == "ABS"}
+	SET_GCODE_OFFSET Z_ADJUST=0.10
+	{elsif filament_type[initial_extruder] == "PLA"}
+	SET_GCODE_OFFSET Z_ADJUST=0.10
+	{else}
+	SET_GCODE_OFFSET Z_ADJUST=0.15
+	{endif}
 
-M400
+	M400
 
 #### Timelapse G-Code
 
-TIMELAPSE_TAKE_FRAME
+	TIMELAPSE_TAKE_FRAME
 
 (This line was removed from the 'Layer change G-Code' as in the stock profile.
 
 #### Change Filament G-Code
 
-M600
+	M600
 
 #### Multimaterial tab
 
