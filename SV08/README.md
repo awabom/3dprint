@@ -39,8 +39,10 @@ I used Sovols official Orca Slicer profile (from the Google Drive folder). Then 
 
 #### Start G-Code
 
-Note: At the end of the start g-code, there is a section of if-statements. This adjusts the z-offset to my liking based on material.
+ * Note 1: At the end of the start g-code, there is a section of if-statements. This adjusts the z-offset to my liking based on material.
 I guess the values will differ for you.
+
+ * Note 2: This removes the priming blob and priming lines. Instead, I use 5 skirt lines as priming in my print profiles.
 
 
 	G28
