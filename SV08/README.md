@@ -46,6 +46,8 @@ I guess the values will differ for you.
 
  * Note 2: This removes the priming blob and priming lines. Instead, I use 5 skirt lines as priming in my print profiles.
 
+Code:
+
 	START_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single]
 
 	{if filament_type[initial_extruder] == "PETG"}
