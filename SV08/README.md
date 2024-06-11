@@ -10,6 +10,7 @@ USE AT YOUR OWN RISK. This is only tested on my personal machine. If your printe
  * Calibration of z-offset each print.
  * Using parameters to 'START_PRINT' from slicer (see start g-code below)
  * New start sequence: Heating bed to target temperature before homing and calibration of z-offset.
+ * TODO: Handling of skew_correction, or retuning belts?
  
  See complete [macro.cfg](macro.cfg)
 
@@ -25,13 +26,12 @@ I also manually entered the correct frequency values here to be safe (the sovol 
 
 I could not see that the built-in PID tuning saved any values, so I manually entered the values in the "extruder" section (pid_kp, pid_ki, pid_kd).
 
-#### Exclude Object
+#### Skew Correction
 
-I enabled the 'exclude object' module by adding
+After (and maybe before?) belt tuning, it prints askew. See [skew correction](https://www.klipper3d.org/Skew_Correction.html).
+Enabled via an empty "skew_correction" section in printer.cfg.
 
-	[exclude_object]
-	
-At the end of printer.cfg before the 'save_variables' section
+TODO: This causes issues with pause, cancel and end_print hitting the end stops. Unsure if belt-adjustment is a better solution...
 
 ### Orca Slicer profile
 
@@ -39,31 +39,29 @@ I used Sovols official Orca Slicer profile (from the Google Drive folder). Then 
 
 #### Start G-Code
 
- * Warning: To use this start g-code you MUST do all changes to macro.cfg above.
+ * Warning: To use this start g-code you MUST use my macro.cfg
 
- * Note 1: At the end of the start g-code, there is a section of if-statements. This adjusts the z-offset to my liking based on material.
-I guess the values will differ for you.
+ * Note 1: At the end of the start g-code, there is a section of if-statements. This adjusts the z-offset to my liking based on material. I guess the values will differ for you.
 
- * Note 2: This removes the priming blob and priming lines. Instead, I use 5 skirt lines as priming in my print profiles.
+ * Note 2: Due to changes in the priming sequence, I use 5 skirt lines as extra priming in my print profiles.
 
 Code:
 
 	START_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single]
 
 	{if filament_type[initial_extruder] == "PETG"}
-	SET_GCODE_OFFSET Z_ADJUST=0.15
+	SET_GCODE_OFFSET Z_ADJUST=0.1
 	{elsif filament_type[initial_extruder] == "ASA"}
-	SET_GCODE_OFFSET Z_ADJUST=0.10
-	{elsif filament_type[initial_extruder] == "ABS"}
-	SET_GCODE_OFFSET Z_ADJUST=0.10
-	{elsif filament_type[initial_extruder] == "PLA"}
 	SET_GCODE_OFFSET Z_ADJUST=0.05
+	{elsif filament_type[initial_extruder] == "ABS"}
+	SET_GCODE_OFFSET Z_ADJUST=0.05
+	{elsif filament_type[initial_extruder] == "PLA"}
+	SET_GCODE_OFFSET Z_ADJUST=0
 	{else}
-	SET_GCODE_OFFSET Z_ADJUST=0.15
+	SET_GCODE_OFFSET Z_ADJUST=0.1
 	{endif}
 
 	M400
-
 
 #### Timelapse G-Code
 
@@ -84,3 +82,5 @@ Checked the 'Manual Filament Change' checkbox.
 Under print speed (in Process Global Settings for each print profile), I entered the Acceleration values I got from the belt tuning sequence. 
 It mentions something about 'Don't go over X m/s2 to avoid too much smoothing'. 
 I used the smaller value of those for 'Normal printing'. Travel is still 20k.
+
+Note: It seems to be pretty OK to go above those values, significantly, without getting too much ringing.
