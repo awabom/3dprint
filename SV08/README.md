@@ -3,6 +3,7 @@
 These are my changes made to the SV08 config, using firmware version 2.3.3 as a starting point.
 
 USE AT YOUR OWN RISK. This is only tested on my personal machine. If your printer breaks, don't blame me.
+The 'skew correction' stuff is the newest and most lightly tested addition.
 
 ### macro.cfg
 
@@ -10,7 +11,8 @@ USE AT YOUR OWN RISK. This is only tested on my personal machine. If your printe
  * Calibration of z-offset each print.
  * Using parameters to 'START_PRINT' from slicer (see start g-code below)
  * New start sequence: Heating bed to target temperature before homing and calibration of z-offset.
- * TODO: Handling of skew_correction, or retuning belts?
+ * Handling of skew_correction (turn off/on at the correct times, hopefully)
+ * A bit more flush volume for filament change
  
  See complete [macro.cfg](macro.cfg)
 
@@ -29,13 +31,21 @@ I could not see that the built-in PID tuning saved any values, so I manually ent
 #### Skew Correction
 
 After (and maybe before?) belt tuning, it prints askew. See [skew correction](https://www.klipper3d.org/Skew_Correction.html).
-Enabled via an empty "skew_correction" section in printer.cfg.
+Enable with an empty "skew_correction" section in printer.cfg:
 
-TODO: This causes issues with pause, cancel and end_print hitting the end stops. Unsure if belt-adjustment is a better solution...
+	[skew_correction]
+
+To create a skew correction profile (with my example values):
+
+	SET_SKEW XY=141.5,141.0,99.9
+	SKEW_PROFILE SAVE=my_skew_profile
+	SAVE_CONFIG
+	
+Then the macro.cfg will automatically load it at the proper times.... I hope.
 
 ### Orca Slicer profile
 
-I used Sovols official Orca Slicer profile (from the Google Drive folder). Then made the following changes:
+I used Sovol's official Orca Slicer profile (from the Google Drive folder). Then made the following changes:
 
 #### Start G-Code
 
@@ -63,11 +73,12 @@ Code:
 
 	M400
 
+
 #### Timelapse G-Code
 
 	TIMELAPSE_TAKE_FRAME
 
-(This line was removed from the 'Layer change G-Code' as in the stock profile.
+(Also, remove this command from the stock 'Layer change G-code' section.)
 
 #### Change Filament G-Code
 
