@@ -7,7 +7,7 @@ The 'skew correction' stuff is the newest and most lightly tested addition.
 
 ### macro.cfg
 
- * Raised nozzle cleaning: I think the nozzle cleaning digs the nozzle a bit to much into the cleaning pad. Some parts were ripped off after just 2 cleaning cycles.
+ * Raised & colder nozzle cleaning: I think the nozzle cleaning digs the nozzle a bit to much into the cleaning pad. Some parts were ripped off after just 2 cleaning cycles.
  * Calibration of z-offset each print.
  * Using parameters to 'START_PRINT' from slicer (see start g-code below)
  * New start sequence: Heating bed to target temperature before homing and calibration of z-offset.
@@ -35,7 +35,7 @@ Enable with an empty "skew_correction" section in printer.cfg:
 
 	[skew_correction]
 
-To create a skew correction profile (with my example values):
+To create a skew correction profile run the following using the console (with my example values):
 
 	SET_SKEW XY=141.5,141.0,99.9
 	SKEW_PROFILE SAVE=my_skew_profile
@@ -46,6 +46,12 @@ Then the macro.cfg will automatically load it at the proper times.... I hope.
 ### Orca Slicer profile
 
 I used Sovol's official Orca Slicer profile (from the Google Drive folder). Then made the following changes:
+
+#### Basic - Advanced - G-code thumbnails
+
+Only one size:
+
+	400x300
 
 #### Start G-Code
 
@@ -61,18 +67,11 @@ Code:
 
 	{if filament_type[initial_extruder] == "PETG"}
 	SET_GCODE_OFFSET Z_ADJUST=0.1
-	{elsif filament_type[initial_extruder] == "ASA"}
-	SET_GCODE_OFFSET Z_ADJUST=0.05
-	{elsif filament_type[initial_extruder] == "ABS"}
-	SET_GCODE_OFFSET Z_ADJUST=0.05
-	{elsif filament_type[initial_extruder] == "PLA"}
-	SET_GCODE_OFFSET Z_ADJUST=0
 	{else}
-	SET_GCODE_OFFSET Z_ADJUST=0.1
+	SET_GCODE_OFFSET Z_ADJUST=0
 	{endif}
 
 	M400
-
 
 #### Timelapse G-Code
 
@@ -87,6 +86,13 @@ Code:
 #### Multimaterial tab
 
 Checked the 'Manual Filament Change' checkbox.
+
+#### Extruder tab
+
+These are mostly a matter of opinion, but I changed:
+
+Z hop when retracting set to 0.2
+Z hop type changed to "Auto"
 
 #### Print Speed
 
