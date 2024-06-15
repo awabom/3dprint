@@ -43,7 +43,32 @@ To create a skew correction profile run the following using the console (with my
 	
 Then the macro.cfg will automatically load it at the proper times.... I hope.
 
-### Orca Slicer profile
+### Orca Slicer profile (Based on Voron 2.4 350)
+
+ * Printable height: 345
+ * Probe point distance, X & Y: 30
+ * Machine start G-Code: Use the one from below under "Based on Sovol's"
+ * Machine end G-code:
+
+	END_PRINT
+	TIMELAPSE_TAKE_FRAME
+	
+ * Change filament g-code
+
+	M600
+	
+ * Extruder - Retraction - Length: 0.5
+ * Z-hop when retracting: 0.2
+ * Z-hop-type: Auto
+ * Emit limits to G-code: unchecked
+ * Speed Values: X 700, Y 700, Z 20, E 50. 
+ * Accel Limits: X 40000, Y 40000
+ * Jerk: X 20, Y 20, Z 0.5, E 5
+
+The print settings I use are mostly based on Voron-presets, but with increased accelerations and speeds taken from Sovol's Orca Profiles (see below)
+
+
+### Orca Slicer profile (Based on Sovol's)
 
 I used Sovol's official Orca Slicer profile (from the Google Drive folder). Then made the following changes:
 
