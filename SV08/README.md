@@ -67,11 +67,16 @@ Code:
 
 	{if filament_type[initial_extruder] == "PETG"}
 	SET_GCODE_OFFSET Z_ADJUST=0.1
+	{elsif filament_type[initial_extruder] == "ABS"}
+	SET_GCODE_OFFSET Z_ADJUST=-0.025
+	{elsif filament_type[initial_extruder] == "ASA"}
+	SET_GCODE_OFFSET Z_ADJUST=-0.025
 	{else}
 	SET_GCODE_OFFSET Z_ADJUST=0
 	{endif}
 
 	M400
+
 
 #### Timelapse G-Code
 
