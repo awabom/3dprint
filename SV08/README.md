@@ -5,6 +5,14 @@ These are my changes made to the SV08 config, using firmware version 2.3.3 as a 
 USE AT YOUR OWN RISK. This is only tested on my personal machine. If your printer breaks, don't blame me.
 The 'skew correction' stuff is the newest and most lightly tested addition.
 
+### saved_variables.cfg
+
+Make sure you have no manual z-offset adjustment:
+
+	offsetadjust = 0
+
+Note to self: ...and in the future remember to reset this value again if you adjust the offset manually directly on the printer.
+
 ### macro.cfg
 
  * Raised & colder nozzle cleaning: I think the nozzle cleaning digs the nozzle a bit to much into the cleaning pad. Some parts were ripped off after just 2 cleaning cycles.
