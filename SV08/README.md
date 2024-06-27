@@ -34,7 +34,17 @@ I also manually entered the correct frequency values here to be safe (the sovol 
 
 #### PID tuning
 
-I could not see that the built-in PID tuning saved any values, so I manually entered the values in the "extruder" section (pid_kp, pid_ki, pid_kd).
+After 
+
+	PID_CALIBRATE HEATER=extruder TARGET=240
+	SAVE_CONFIG
+	
+...the updated values will be at the bottom of printer.cfg 
+
+I also did
+
+	PID_CALIBRATE HEATER=heater_bed TARGET=80
+	SAVE_CONFIG
 
 #### Skew Correction
 
