@@ -17,10 +17,11 @@ Note to self: ...and in the future remember to reset this value again if you adj
 
  * Raised & colder nozzle cleaning: I think the nozzle cleaning digs the nozzle a bit to much into the cleaning pad. Some parts were ripped off after just 2 cleaning cycles.
  * Calibration of z-offset each print.
- * Using parameters to 'START_PRINT' from slicer (see start g-code below)
+ * Using parameters to 'START_PRINT' from slicer (see start g-code below).
  * New start sequence: Heating bed to target temperature before homing and calibration of z-offset.
- * Handling of skew_correction (turn off/on at the correct times, hopefully)
- * A bit more flush volume for filament change
+ * Handling of skew_correction (turn off/on at the correct times, hopefully).
+ * A bit more flush volume for filament change.
+ * Moved M400 in START_PRINT to avoid a slight pause after 0.5s of printing.
  
  See complete [macro.cfg](macro.cfg)
 
