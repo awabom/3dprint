@@ -15,7 +15,8 @@ Note to self: ...and in the future remember to reset this value again if you adj
 
 ### macro.cfg
 
- * Raised & colder nozzle cleaning: I think the nozzle cleaning digs the nozzle a bit to much into the cleaning pad. Some parts were ripped off after just 2 cleaning cycles.
+ * Implemented Manual Nozzle Clean at start of print - not using the auto nozzle cleaning anymore.
+ * Earlier change to Auto nozzle clean (unused): Raised & colder nozzle cleaning: I think the nozzle cleaning digs the nozzle a bit to much into the cleaning pad. Some parts were ripped off after just 2 cleaning cycles.
  * Calibration of z-offset each print.
  * Using parameters to 'START_PRINT' from slicer (see start g-code below).
  * New start sequence: Heating bed to target temperature before homing and calibration of z-offset.
