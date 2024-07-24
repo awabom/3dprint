@@ -71,7 +71,6 @@ Then the macro.cfg will automatically load it at the proper times.... I hope.
  * Machine end G-code:
 
 	END_PRINT
-	TIMELAPSE_TAKE_FRAME
 	
  * Change filament g-code
 
