@@ -2,14 +2,25 @@
 
 Experimental! Generates a 'cut list' for creating a long spliced filament with color changes prepared at specific lengths.
 
-Only supports OrcaSlicer and the filament painting tool. Do not add 'Color change at layer' commands yourself.
-Make sure you have "Manual Filament Change" checked in the printer Multimaterial settings tab so the proper commands are output by OrcaSlicer.
+ * Note: The lengths in the generated 'cut list' does not match OrcaSlicer's... But OrcaSlicer seems to be incorrect. I need more testing.
 
-NOTE: Currently having issues with some extra unnecessary purging from OrcaSlicer...
+Only supports OrcaSlicer and its filament change features.
+
+Ensure the following settings under printer 'Multimaterial' settings:
+ * Manual Filament Change: checked
+ * Purge in prime tower: unchecked
+ * Enable filament ramming: unchecked
+ * Cooling tube position: 0
+ * Cooling tube length: 0
+ * Filament parking position: 0
+ * Extra loading distance: 0
+ * High extruder current... : unchecked
+
+Also, under 'Extruder' settings, it could be good to set Retraction when switching material - Length to mm.
 
 ### Use
 
-The script will output a .txt file next to the .gcode file.
+The script will output a -cutlist.txt file next to the .gcode file.
 
 Add a line in "Post-processing scripts" in "Print Settings":
 
