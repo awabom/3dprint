@@ -108,17 +108,6 @@ Only one size:
 Code:
 
 	START_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single]
-
-	{if filament_type[initial_extruder] == "PETG"}
-	SET_GCODE_OFFSET Z_ADJUST=0.1
-	{elsif filament_type[initial_extruder] == "ABS"}
-	SET_GCODE_OFFSET Z_ADJUST=-0.025
-	{elsif filament_type[initial_extruder] == "ASA"}
-	SET_GCODE_OFFSET Z_ADJUST=-0.025
-	{else}
-	SET_GCODE_OFFSET Z_ADJUST=0
-	{endif}
-
 	M400
 
 
@@ -134,9 +123,18 @@ Code:
 
 #### Multimaterial tab
 
-Checked the 'Manual Filament Change' checkbox.
+ * Manual Filament Change: checked
+ * Purge in prime tower: unchecked
+ * Enable filament ramming: unchecked
+ * Cooling tube position: 0
+ * Cooling tube length: 0
+ * Filament parking position: 0
+ * Extra loading distance: 0
+ * High extruder current... : unchecked
 
 #### Extruder tab
+
+ * Retraction when switching material - Length: 0 mm.
 
 These are mostly a matter of opinion, but I changed:
 
