@@ -5,6 +5,8 @@ Experimental! Generates a 'cut list' for creating a long spliced filament with c
 Only supports OrcaSlicer and the filament painting tool. Do not add 'Color change at layer' commands yourself.
 Make sure you have "Manual Filament Change" checked in the printer Multimaterial settings tab so the proper commands are output by OrcaSlicer.
 
+NOTE: Currently having issues with some extra unnecessary purging from OrcaSlicer...
+
 ### Use
 
 The script will output a .txt file next to the .gcode file.
