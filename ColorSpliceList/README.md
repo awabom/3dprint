@@ -6,6 +6,8 @@ Experimental! Generates a 'cut list' for creating a long spliced filament with c
 
 Only supports OrcaSlicer and its filament change features.
 
+### Printer settings in OrcaSlicer
+
 Ensure the following settings under printer 'Multimaterial' settings:
  * Manual Filament Change: checked
  * Purge in prime tower: unchecked
@@ -18,6 +20,11 @@ Ensure the following settings under printer 'Multimaterial' settings:
 
 Also, under 'Extruder' settings:
  * Retraction when switching material - Length: 0 mm.
+
+### Process Settings
+
+ * Enable Prime Tower under 'Others'.
+ * Set prime volume to something reasonable for the color change to occur.
 
 ### Use
 
