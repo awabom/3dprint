@@ -2,8 +2,6 @@
 
 Experimental! Generates a 'cut list' for creating a long spliced filament with color changes prepared at specific lengths.
 
- * Note: The lengths in the generated 'cut list' does not match OrcaSlicer's... But OrcaSlicer seems to be incorrect. I need more testing.
-
 Only supports OrcaSlicer and its filament change features.
 
 ### Printer settings in OrcaSlicer
