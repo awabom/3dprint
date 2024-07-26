@@ -16,7 +16,8 @@ Ensure the following settings under printer 'Multimaterial' settings:
  * Extra loading distance: 0
  * High extruder current... : unchecked
 
-Also, under 'Extruder' settings, it could be good to set Retraction when switching material - Length to mm.
+Also, under 'Extruder' settings:
+ * Retraction when switching material - Length: 0 mm.
 
 ### Use
 
