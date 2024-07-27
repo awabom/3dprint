@@ -2,7 +2,8 @@
 
 Experimental! Generates a 'cut list' for creating a long spliced filament with color changes prepared at specific lengths.
 
-Only supports OrcaSlicer and its filament change features.
+Only supports OrcaSlicer and its filament change features. 
+NOTE: Latest version requires Prime Tower to be enabled!
 
 ### Printer settings in OrcaSlicer
 
