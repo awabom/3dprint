@@ -64,6 +64,10 @@ To create a skew correction profile run the following using the console (with my
 
 ### PrusaSlicer profile 
 
+ * Skip all the profile setup and just import it from a g-code file? Use File -> Import -> Import Config... with this file: [PrusaSlicerProfile.gcode](PrusaSlicerProfile.gcode)
+
+...otherwise:
+
  * Create a Voron 2.4 350 printer, and modify the following:
 
  * General
