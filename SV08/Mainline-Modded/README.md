@@ -62,6 +62,98 @@ To create a skew correction profile run the following using the console (with my
 
 ## Slicer setup
 
+### OrcaSlicer profile
+
+ * Create a Voron 2.4 350 0.4 nozzle printer, and modify the following:
+
+ * Mesh margin: 5
+ * Printable height: 345 (300 with a flat panel enclosure)
+ * Single extruder multimaterial parameters
+   * Cooling tube length: 0
+   * Cooling tube position: 0
+   * Extra loading distance: 0
+   * Filament parking position: 0
+ * Wipe tower
+   * Enable filament ramming: false (I'm not too sure about this one)
+   * Purge in prime tower: false (I'm not too sure about this one)
+ * Single extruder multimaterial setup
+   * Manual Filament Change: true
+ * Extruder
+   * Layer height limits, Min: 0.08
+   * Retraction Length (Toolchange): 0
+   * Retraction
+     * Length: 0.5
+     * Z hop when retracting: 0.2
+     * Z hop type: Auto
+ * Motion ability
+   * Check the PrusaSlicer profile "Machine limits" below.
+
+#### Machine start G-code
+
+The 'if filament_type'... things are for using different z-offsets for different types of material. My printer is calibrated with ABS, and it seems PLA needs a lower offset (probably due to temperature expansion of the brass nozzle?)
+
+	START_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single] CHAMBER_TEMP=[chamber_temperature[initial_extruder]]
+
+	{if filament_type[initial_extruder] == "PLA"}
+	SET_GCODE_OFFSET Z_ADJUST=-0.05
+	{else}
+	SET_GCODE_OFFSET Z_ADJUST=0
+	{endif}
+
+
+	G1 E10 F100
+	G1 Z5 E-1 F1200
+	G1 Z5 F600
+
+	G1 X{first_layer_print_min[0]} Y{max(0, first_layer_print_min[1]-5)} F6000
+	G1 Z0.2 F600
+	G1 X{first_layer_print_min[0]+30} E5 F600
+
+	M400
+#### Machine end G-code
+
+	END_PRINT
+
+#### Printing by object G-code
+
+Leave empty
+
+#### Before layer change G-code
+
+	;BEFORE_LAYER_CHANGE
+	;[layer_z]
+	G92 E0
+
+#### Layer change G-code
+
+	;AFTER_LAYER_CHANGE
+	;[layer_z]
+
+#### Time lapse G-code
+
+	TIMELAPSE_TAKE_FRAME
+
+#### Change filament G-code
+
+	M117 Change to {next_extruder}
+	M600
+
+#### Change extrusion role G-code
+
+Leave empty
+
+#### Pause G-code
+
+	PAUSE
+
+#### Template Custom G-code
+
+Leave empty
+
+#### Filament profiles
+
+Base your profiles on the Voron profiles for the material you use, but increase the "Max volumetric speed". For PLA, ABS and ASA - set to e.g. 20 mm3/s - and you can actually go even higher!
+
 ### PrusaSlicer profile 
 
  * Skip all the profile setup and just import it from a g-code file? Use File -> Import -> Import Config... with this file: [PrusaSlicerProfile.gcode](PrusaSlicerProfile.gcode)
@@ -71,8 +163,8 @@ To create a skew correction profile run the following using the console (with my
  * Create a Voron 2.4 350 printer, and modify the following:
 
  * General
-   * Max print height: 345
-   * Extruders: 2
+   * Max print height: 345 (300 with a flat panel enclosure)
+   * Extruders: 2 (this is for easy multi-color prints)
    * Single Extruder Multi Material: true
    * Supports remaining times: true
  * Machine limits, see below.
@@ -102,7 +194,7 @@ To create a skew correction profile run the following using the console (with my
    * Filament parking position: 0
    * Purging volume: 50 (this is just a guess, currently)
 
-Not important/tune them yourself:
+Not important/tune them yourself. These values are from the Sovol profile:
 
  * Machine limits
    * Max feedrates
