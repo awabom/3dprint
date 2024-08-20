@@ -90,16 +90,7 @@ To create a skew correction profile run the following using the console (with my
 
 #### Machine start G-code
 
-The 'if filament_type'... things are for using different z-offsets for different types of material. My printer is calibrated with ABS, and it seems PLA needs a lower offset (probably due to temperature expansion of the brass nozzle?)
-
 	START_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single] CHAMBER_TEMP=[chamber_temperature[initial_extruder]]
-
-	{if filament_type[initial_extruder] == "PLA"}
-	SET_GCODE_OFFSET Z_ADJUST=-0.05
-	{else}
-	SET_GCODE_OFFSET Z_ADJUST=0
-	{endif}
-
 
 	G1 E10 F100
 	G1 Z5 E-1 F1200
