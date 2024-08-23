@@ -90,19 +90,17 @@ To create a skew correction profile run the following using the console (with my
 
 #### Machine start G-code
 
-	START_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single] CHAMBER_TEMP=[chamber_temperature[initial_extruder]]
-
-	G1 E10 F100
-	G1 Z5 E-1 F1200
-	G1 Z5 F600
+	START_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single] CHAMBER_TEMP=[chamber_temperature[initial_extruder]] START_X={first_layer_print_min[0]} START_Y={max(0, first_layer_print_min[1]-5)}
 
 	G1 X{first_layer_print_min[0]} Y{max(0, first_layer_print_min[1]-5)} F6000
 	G1 Z0.2 F600
 	G1 X{first_layer_print_min[0]+30} E5 F600
 
 	M400
+
 #### Machine end G-code
 
+	G1 E-1 F1200
 	END_PRINT
 
 #### Printing by object G-code
@@ -146,6 +144,8 @@ Leave empty
 Base your profiles on the Voron profiles for the material you use, but increase the "Max volumetric speed". For PLA, ABS and ASA - set to e.g. 20 mm3/s - and you can actually go even higher!
 
 ### PrusaSlicer profile 
+
+ * NOTE: This is slightly less updated than the OrcaSlicer profile.
 
  * Skip all the profile setup and just import it from a g-code file? Use File -> Import -> Import Config... with this file: [PrusaSlicerProfile.gcode](PrusaSlicerProfile.gcode)
 
