@@ -9,7 +9,7 @@ These are my changes made to the SV08 I currently run:
  * Replaced PTFE tube between extruder and heatbreak (inside the toolhead) - the stock tube had a too large inner diameter.
  * Mainline klipper using the guide at: https://github.com/Rappetor/Sovol-SV08-Mainline
  * Biqu Microprobe, using the mount from: https://www.printables.com/model/952307-sovol-sv08-biqu-microprobe-mount-v20
- * New shroud, not yet released. But the stock shroud is fine - I just like to see the nozzle.
+ * New shroud. The stock shroud is fine - I just like to see the nozzle: https://www.printables.com/model/983776
  * DIY Enclosure from acrylic panels and tape - This is important. Get an enclosure (The factory one seems nice too).
  * My config files:
    * Modded the startup scripts for the Microprobe
