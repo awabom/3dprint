@@ -4,10 +4,12 @@ Work in progress. Based on the work of https://github.com/Bully85/Sovol-SV04-Kli
 
 USE AT YOUR OWN RISK. This is only tested on my personal machine. If your printer breaks, don't blame me.
 
-## Main Feature 
+## Main Features 
 
-Tool change moves both heads at the same time for faster tool change. 
-Missing: Copy / Mirror modes.
+ * Tool change moves both heads at the same time for faster tool change. 
+ * Pre-heat inactive toolhead from PrusaSlicer's added M104.1 commands.
+ 
+* Missing: Copy / Mirror modes.
 
 ## Config files for Klipper
 
@@ -17,5 +19,7 @@ These files can be edited via Mainsail and just edited directly into the printer
 
 ## PrusaSlicer Profiles
 
-Coming soon. Based on Prusa XL 2T.
+Based on Prusa XL 2T.
+
+ * Files here: [Profiles/](Profiles/)
 
